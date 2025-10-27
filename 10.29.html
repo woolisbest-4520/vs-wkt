@@ -1,8 +1,79 @@
-<DOCTYPE html>
-  <html>
-    <head>
-      <meta charset"UTF-8">
-      <title>わかめには勝ったか？</title>
-    </head>
-    <body><h1>WOOLtubeの無料期限は終了しました。</h1><h2>期限延長については「伊藤真音」に連絡ください。</h2></body>
-  </html>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>たぬき禁止令 通知</title>
+  <style>
+    body {
+      font-family: "Hiragino Sans", "Noto Sans JP", sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #fafafa;
+      line-height: 1.8;
+    }
+
+    section {
+      max-width: 700px;
+      margin: 100px auto;
+      padding: 40px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
+
+    /* 初期状態（上にずらして透明） */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(-30px);
+      transition: all 0.8s ease-out;
+    }
+
+    /* 表示時（下にスライドしながらフェードイン） */
+    .show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    h2 {
+      margin-bottom: 1.5em;
+    }
+
+    p {
+      text-indent: 1em;
+    }
+
+    .signature {
+      margin-top: 2em;
+      text-align: right;
+    }
+  </style>
+</head>
+<body>
+
+  <section class="fade-in">
+    <h2>関係各位</h2>
+    <p>本件の実施にあたり、進行状況や作業環境を円滑に保つ目的で、必要に応じて「たぬき禁止令」を発令する可能性があります。</p>
+    <p>本禁止令は一時的な措置であり、プロジェクトの円滑な遂行を最優先とするための判断です。</p>
+    <p>各自、対象となる行動・発言については慎重にご対応ください。詳細は別途通知いたしますので、ご確認のうえご協力をお願いいたします。</p>
+    <p class="signature">（伊藤）</p>
+  </section>
+
+  <script>
+    const targets = document.querySelectorAll('.fade-in');
+
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+          obs.unobserve(entry.target); // 一度だけ実行
+        }
+      });
+    }, {
+      threshold: 0.2
+    });
+
+    targets.forEach(target => observer.observe(target));
+  </script>
+</body>
+</html>
